@@ -64,4 +64,8 @@ public class Book {
     public void setRating(RatingType rating) {
         this.rating = rating;
     }
+
+    public String getBookInfo() {
+        return String.format(title + " by " + author);
+    }
 }

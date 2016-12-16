@@ -47,7 +47,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL(sql);
     }
 
-    void addBook(Book book) {
+    public void addBook(Book book) {
         String title = book.getTitle();
         String author = book.getAuthor();
 
@@ -55,6 +55,32 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 "VALUES ('" + title + "','" + author + "')";
         runSQL(sql);
     }
+
+    public void updateBook(Book book) {
+        int id = book.getId();
+        String title = book.getTitle();
+        String author = book.getAuthor();
+
+        String sql = "UPDATE " + TABLE_BOOKS + " SET "
+                + KEY_TITLE + " = '" + title + "',"
+                + KEY_AUTHOR + " = '" + author + "' WHERE "
+                + KEY_ID + " = " + id;
+        runSQL(sql);
+    }
+
+    public Book getBook(String title) {
+        String sql = "SELECT * FROM " + TABLE_BOOKS + " WHERE " + KEY_TITLE + " = '" + title + "'";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(sql, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+
+            Book book = getBookFromDBCursor(cursor);
+            return book;
+        }
+        return null;
+    }
+
 
     public ArrayList<Book> getAllBooks() {
         ArrayList<Book> bookList = new ArrayList<Book>();
@@ -70,6 +96,22 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
         return bookList;
+    }
+
+    public void deleteBook(Book book) {
+        int id = book.getId();
+        String sql = "DELETE FROM " + TABLE_BOOKS + " WHERE " + KEY_ID + " = " + id;
+        runSQL(sql);
+    }
+
+    public void deleteBook(int id) {
+        String sql = "DELETE FROM " + TABLE_BOOKS + " WHERE " + KEY_ID + " = " + id;
+        runSQL(sql);
+    }
+
+    public void deleteAllBooks() {
+        String sql = "DELETE FROM " + TABLE_BOOKS;
+        runSQL(sql);
     }
 
     private  Book getBookFromDBCursor(Cursor cursor) {
