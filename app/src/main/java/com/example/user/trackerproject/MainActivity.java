@@ -29,10 +29,10 @@ public class MainActivity extends AppCompatActivity {
 
         final DatabaseHandler db = ((MainApplication)getApplication()).db;
 
-        db.deleteAllBooks();
-        db.addBook(new Book("A Little Life", "Hanya Yanagihara"));
-        db.addBook(new Book("The Girls", "Emma Cline"));
-        db.addBook(new Book("Norwegian Wood", "Haruki Murakami"));
+      //  db.deleteAllBooks();
+//        db.addBook(new Book("A Little Life", "Hanya Yanagihara"));
+//        db.addBook(new Book("The Girls", "Emma Cline"));
+//        db.addBook(new Book("Norwegian Wood", "Haruki Murakami"));
 
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getAllBookTitles(db));
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private ArrayList<String> getAllBookTitles(DatabaseHandler db) {
+    public ArrayList<String> getAllBookTitles(DatabaseHandler db) {
         ArrayList<String> bookTitles = new ArrayList<String>();
 
         ArrayList<Book> titles = db.getAllBooks();
