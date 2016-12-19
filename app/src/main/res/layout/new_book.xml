@@ -1,26 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/white">
 
     <EditText
         android:id="@+id/book_title"
+        android:hint="Add Book Title Here"
         android:layout_marginTop="20dp"
         android:textSize="30dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal" />
 
     <EditText
         android:id="@+id/book_author"
+        android:hint="Add Book Author Here"
         android:layout_marginTop="20dp"
         android:textSize="30dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal" />
 
     <Button
         android:id="@+id/button_add"
         android:text="Add"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
 </LinearLayout>

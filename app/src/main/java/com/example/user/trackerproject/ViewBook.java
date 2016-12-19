@@ -1,12 +1,15 @@
 package com.example.user.trackerproject;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.RatingBar;
+import android.widget.Toast;
 
 /**
  * Created by user on 18/12/2016.
@@ -26,6 +29,8 @@ public class ViewBook extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_book);
+
+
 
         titleEditText = (TextView) findViewById(R.id.book_title);
         authorEditText = (TextView) findViewById(R.id.book_author);

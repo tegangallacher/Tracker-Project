@@ -81,6 +81,19 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return null;
     }
 
+    public Book getBookById(int id) {
+        String sql = "SELECT * FROM " + TABLE_BOOKS + " WHERE " + KEY_ID + " = " + id;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(sql, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+
+            Book book = getBookFromDBCursor(cursor);
+            return book;
+        }
+        return null;
+    }
+
 
     public ArrayList<Book> getAllBooks() {
         ArrayList<Book> bookList = new ArrayList<Book>();

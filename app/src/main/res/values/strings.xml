@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TrackerProject</string>
+    <string name="app_name">Book Library</string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
     <string name="cancel">Cancel</string>
