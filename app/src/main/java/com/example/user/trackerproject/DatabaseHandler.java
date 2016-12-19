@@ -69,7 +69,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public Book getBook(String title) {
-        String sql = "SELECT * FROM " + TABLE_BOOKS + " WHERE " + KEY_TITLE + " = '" + title + "'";
+        String sql = "SELECT * FROM " + TABLE_BOOKS +  " WHERE " + KEY_TITLE + " = '" + title + "'";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(sql, null);
         if (cursor != null) {
