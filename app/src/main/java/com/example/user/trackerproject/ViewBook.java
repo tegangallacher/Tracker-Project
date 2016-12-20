@@ -1,5 +1,6 @@
 package com.example.user.trackerproject;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -20,6 +21,9 @@ public class ViewBook extends AppCompatActivity {
     Button editButton;
     Button deleteButton;
     Button backButton;
+    RatingBar ratingBar;
+    Button submit;
+    TextView ratingDisplay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,13 +34,34 @@ public class ViewBook extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_book);
 
-
-
         titleEditText = (TextView) findViewById(R.id.book_title);
         authorEditText = (TextView) findViewById(R.id.book_author);
         editButton = (Button) findViewById(R.id.button_edit);
         deleteButton = (Button) findViewById(R.id.button_delete);
         backButton = (Button) findViewById(R.id.button_back);
+        submit = (Button)findViewById(R.id.subbttn);
+        ratingDisplay = (TextView)findViewById(R.id.rating_text);
+
+
+        ratingBar = (RatingBar)findViewById(R.id.ratingBar);
+
+        String savedTextFromPreferences = SavedTextPreferences.getStoredText(this);
+        if (savedTextFromPreferences != null && !savedTextFromPreferences.isEmpty()) {
+            ratingDisplay.setVisibility(View.VISIBLE);
+            ratingDisplay.setText("You rated the book: " + savedTextFromPreferences);
+        }
+
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String toSave = String.valueOf(ratingBar.getRating());
+                ratingDisplay.setVisibility(View.VISIBLE);
+                ratingDisplay.setText("You rated the book: " + toSave);
+                Context context = v.getContext();
+                SavedTextPreferences.setStoredText(context, toSave);
+            }
+        });
+
 
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
