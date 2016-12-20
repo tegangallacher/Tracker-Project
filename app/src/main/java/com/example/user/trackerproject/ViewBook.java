@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.RatingBar;
@@ -36,31 +37,10 @@ public class ViewBook extends AppCompatActivity {
 
         titleEditText = (TextView) findViewById(R.id.book_title);
         authorEditText = (TextView) findViewById(R.id.book_author);
+        ratingDisplay = (TextView)findViewById(R.id.rating_text);
         editButton = (Button) findViewById(R.id.button_edit);
         deleteButton = (Button) findViewById(R.id.button_delete);
-        backButton = (Button) findViewById(R.id.button_back);
-        submit = (Button)findViewById(R.id.subbttn);
-        ratingDisplay = (TextView)findViewById(R.id.rating_text);
-
-
-        ratingBar = (RatingBar)findViewById(R.id.ratingBar);
-
-        String savedTextFromPreferences = SavedTextPreferences.getStoredText(this);
-        if (savedTextFromPreferences != null && !savedTextFromPreferences.isEmpty()) {
-            ratingDisplay.setVisibility(View.VISIBLE);
-            ratingDisplay.setText("You rated the book: " + savedTextFromPreferences);
-        }
-
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String toSave = String.valueOf(ratingBar.getRating());
-                ratingDisplay.setVisibility(View.VISIBLE);
-                ratingDisplay.setText("You rated the book: " + toSave);
-                Context context = v.getContext();
-                SavedTextPreferences.setStoredText(context, toSave);
-            }
-        });
+//        backButton = (Button) findViewById(R.id.button_back);
 
 
         Intent intent = getIntent();
@@ -68,10 +48,21 @@ public class ViewBook extends AppCompatActivity {
         final int id = extras.getInt("id");
         final String title = extras.getString("title");
         final String author = extras.getString("author");
+        final String rating = extras.getString("rating");
 
 
         titleEditText.setText(title);
         authorEditText.setText(author);
+
+
+        if (rating.equals("null")) {
+//            ratingDisplay.setText(" ");
+            ratingDisplay.setVisibility(View.INVISIBLE);
+        } else {
+            ratingDisplay.setVisibility(View.VISIBLE);
+            ratingDisplay.setText("You rated this book: " + rating);
+        }
+
 
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,6 +71,7 @@ public class ViewBook extends AppCompatActivity {
                 intent.putExtra("id", id);
                 intent.putExtra("title", title);
                 intent.putExtra("author", author);
+                intent.putExtra("rating", rating);
                 startActivity(intent);
             }
         });
@@ -92,12 +84,12 @@ public class ViewBook extends AppCompatActivity {
             }
         });
 //
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                backToMainActivity();
-            }
-        });
+//        backButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                backToMainActivity();
+//            }
+//        });
     }
 
     private void backToMainActivity() {

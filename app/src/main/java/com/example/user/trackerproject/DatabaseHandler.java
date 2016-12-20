@@ -23,6 +23,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_ID = "id";
     private static final String KEY_TITLE = "title";
     private static final String KEY_AUTHOR = "author";
+    private static final String KEY_RATING = "rating";
 
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -32,7 +33,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String CREATE_BOOKS_TABLE = "CREATE TABLE " + TABLE_BOOKS + "("
                 + KEY_ID + " INTEGER PRIMARY KEY," + KEY_TITLE + " TEXT,"
-                + KEY_AUTHOR + " TEXT" + ")";
+                + KEY_AUTHOR + " TEXT," + KEY_RATING + " TEXT" + ")";
         db.execSQL(CREATE_BOOKS_TABLE);
     }
 
@@ -50,9 +51,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void addBook(Book book) {
         String title = book.getTitle();
         String author = book.getAuthor();
+        String rating = book.getRating();
 
-        String sql = "INSERT INTO " + TABLE_BOOKS + "(" + KEY_TITLE + "," + KEY_AUTHOR + ") " +
-                "VALUES ('" + title + "','" + author + "')";
+        String sql = "INSERT INTO " + TABLE_BOOKS + "(" + KEY_TITLE + "," + KEY_AUTHOR + "," + KEY_RATING +  ") " +
+                "VALUES ('" + title + "','" + author + "','" + rating + "')";
         runSQL(sql);
     }
 
@@ -60,10 +62,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         int id = book.getId();
         String title = book.getTitle();
         String author = book.getAuthor();
+        String rating = book.getRating();
 
         String sql = "UPDATE " + TABLE_BOOKS + " SET "
                 + KEY_TITLE + " = '" + title + "',"
-                + KEY_AUTHOR + " = '" + author + "' WHERE "
+                + KEY_AUTHOR + " = '" + author + "',"
+                + KEY_RATING + " = '" + rating + "' WHERE "
                 + KEY_ID + " = " + id;
         runSQL(sql);
     }
@@ -131,12 +135,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         int idColumnNum = cursor.getColumnIndex(KEY_ID);
         int titleColumnNum = cursor.getColumnIndex(KEY_TITLE);
         int authorColumnNum = cursor.getColumnIndex(KEY_AUTHOR);
+        int ratingColumnNum = cursor.getColumnIndex(KEY_RATING);
 
         int id = Integer.parseInt(cursor.getString(idColumnNum));
         String title = cursor.getString(titleColumnNum);
         String author = cursor.getString(authorColumnNum);
+        String rating = cursor.getString(ratingColumnNum);
 
-        Book book = new Book(id, title, author);
+        Book book = new Book(id, title, author, rating);
         return book;
     }
 

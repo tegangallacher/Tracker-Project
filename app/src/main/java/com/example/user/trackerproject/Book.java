@@ -7,11 +7,7 @@ public class Book {
     int id;
     String title;
     String author;
-    RatingType rating;
-
-//Empty Constructor
-    public Book() {
-    }
+    String rating;
 
 //Constructor
     public Book(int id, String title, String author) {
@@ -20,9 +16,14 @@ public class Book {
         this.author = author;
     }
 
-//Constructor (with rating - once read)
-    public Book(int id, String title, String author, RatingType rating) {
+    public Book(int id, String title, String author, String rating) {
         this.id = id;
+        this.title = title;
+        this.author = author;
+        this.rating = rating;
+    }
+
+    public Book(String title, String author, String rating) {
         this.title = title;
         this.author = author;
         this.rating = rating;
@@ -57,12 +58,8 @@ public class Book {
         this.author = author;
     }
 
-    public RatingType getRating() {
+    public String getRating() {
         return rating;
-    }
-
-    public void setRating(RatingType rating) {
-        this.rating = rating;
     }
 
     public String getBookInfo() {

@@ -28,32 +28,23 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal" />
 
-    <RatingBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/ratingBar"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="80dp"
-        android:layout_gravity="center_horizontal" />
+    <!--<RatingBar-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/ratingBar"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginTop="80dp"-->
+        <!--android:layout_gravity="center_horizontal" />-->
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/imageView" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="RATE"
-        android:id="@+id/subbttn"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center_horizontal" />
-
 <Button
         android:id="@+id/button_edit"
-        android:text="@string/edit"
+        android:text="Edit/Rate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal" />
@@ -65,11 +56,11 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal" />
 
-    <Button
-        android:id="@+id/button_back"
-        android:text="@string/back_to_main"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal" />
+    <!--<Button-->
+        <!--android:id="@+id/button_back"-->
+        <!--android:text="@string/back_to_main"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center_horizontal" />-->
 
 </LinearLayout>

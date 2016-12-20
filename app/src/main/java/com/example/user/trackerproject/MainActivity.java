@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckedTextView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -50,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("id", book.getId());
                 intent.putExtra("title", book.getTitle());
                 intent.putExtra("author", book.getAuthor());
+                intent.putExtra("rating", book.getRating());
                 startActivity(intent);
             }
         });
