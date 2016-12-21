@@ -52,7 +52,7 @@ public class ViewBook extends AppCompatActivity {
 
 
         titleEditText.setText(title);
-        authorEditText.setText(author);
+        authorEditText.setText("by " + author);
 
 
         if (rating.equals("null")) {
